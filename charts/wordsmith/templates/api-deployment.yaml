@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-words
+  labels:
+    app: {{ .Values.words.labels.app }}
+spec:
+  replicas: {{ .Values.words.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.words.labels.app }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.words.labels.app }}
+    spec:
+      containers:
+      - name: {{ .Release.Name }}-words
+        image: {{ .Values.words.image }}
+        ports:
+        - containerPort: 8080
+          name: {{ .Values.words.name }}

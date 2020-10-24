@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-db
+  labels:
+    app: {{ .Values.db.labels.app }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.db.labels.app }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.db.labels.app }}
+    spec:
+      containers:
+      - name: {{ .Release.Name }}-db
+        image: {{ .Values.db.image }}
+        ports:
+        - containerPort: 5432
+          name: {{ .Values.db.name }}
