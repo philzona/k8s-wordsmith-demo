@@ -11,7 +11,7 @@ web:
     app: words-web
 
 words:
-  name: api
+  name: words
   image: pbzona/wordsmith-words
   labels:
     app: words-api
