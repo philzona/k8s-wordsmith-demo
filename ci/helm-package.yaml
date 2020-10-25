@@ -1,0 +1,21 @@
+version: "1.0"
+stages:
+  - clone
+  - test
+  - deploy
+
+steps:
+  clone:
+    title: Cloning repository
+    type: git-clone
+    repo: pbzona/k8s-wordsmith-demo
+    revision: ${{CF_BRANCH}}
+    git: github
+    stage: clone
+
+  deploy:
+    type: helm
+    arguments:
+      action: push
+      chart_name: /codefresh/volume/k8s-wordsmith-demo/charts/wordsmith
+    stage: deploy
