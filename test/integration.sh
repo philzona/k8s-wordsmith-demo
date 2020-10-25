@@ -29,7 +29,6 @@ status=$(curl -sL -o /dev/null -w "%{http_code}" "http://${external_ip}:${port}"
 
 if [ $status -eq 200 ]; then
     HTTP_PASS="true"
-    exit 0
 else
     HTTP_PASS="false"
 fi;
@@ -37,6 +36,7 @@ fi;
 echo "External IP: $external_ip"
 echo "Port: $port"
 echo "Request status: $status"
+echo "Review URL: http://${external_ip}:${port}"
 
 echo "Test passed: $HTTP_PASS"
 
