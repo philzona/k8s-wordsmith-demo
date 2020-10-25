@@ -12,7 +12,7 @@ while [ $external_ip = '<pending>' ]; do
     sleep 5
     external_ip=$(kubectl get svc -n $NS | grep web | awk '{print $4}')
     echo "External IP: $external_ip"
-    $count++
+    count=$((count + 1))
 
     if [ $count -ge 24 ]; then
         echo "No response after 2 minutes, something is probably wrong"
