@@ -14,4 +14,6 @@ else
     HTTP_PASS="false"
 fi;
 
+echo $HTTP_PASS
+
 cf_export HTTP_PASS
