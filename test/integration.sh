@@ -5,7 +5,7 @@ export HTTP_PASS
 external_ip=$(kubectl get svc -n $NS | grep web | awk '{print $4}')
 
 # Retry until the service has not been fully provisioned
-while [ external_ip = '<pending>' ]; do
+while [ $external_ip = '<pending>' ]; do
     sleep 10
     external_ip=$(kubectl get svc -n $NS | grep web | awk '{print $4}')
 done;
