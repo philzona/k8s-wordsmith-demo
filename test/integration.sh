@@ -4,12 +4,13 @@ export HTTP_PASS
 
 echo "Getting external IP address for web service..."
 external_ip=$(kubectl get svc -n $NS | grep web | awk '{print $4}')
+echo "External IP: $external_ip"
 
 # Retry until the service has not been fully provisioned
 while [ $external_ip = '<pending>' ]; do
-    echo "External IP: $external_ip"
     sleep 5
     external_ip=$(kubectl get svc -n $NS | grep web | awk '{print $4}')
+    echo "External IP: $external_ip"
 done;
 
 echo "Getting port..."
@@ -30,3 +31,5 @@ echo "Port: $port"
 echo "Request status: $status"
 
 echo "Test passed: $HTTP_PASS"
+
+cf_export HTTP_PASS
