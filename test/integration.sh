@@ -14,6 +14,10 @@ else
     HTTP_PASS="false"
 fi;
 
+echo $external_ip
+echo $port
+echo $status
+
 echo $HTTP_PASS
 
 cf_export HTTP_PASS
