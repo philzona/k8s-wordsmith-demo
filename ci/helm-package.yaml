@@ -10,7 +10,7 @@ steps:
     type: git-clone
     repo: pbzona/k8s-wordsmith-demo
     revision: ${{CF_BRANCH}}
-    git: github
+    git: github-cf
     stage: clone
 
   deploy:
