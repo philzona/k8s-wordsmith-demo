@@ -26,7 +26,7 @@ steps:
     type: "git-clone"
     repo: "pbzona/k8s-wordsmith-demo"
     revision: "${{CF_BRANCH}}"
-    git: "github"
+    git: "github-cf"
     stage: "clone"
 
   test:
@@ -63,7 +63,7 @@ steps:
     image: "codefresh/kubectl"
     commands:
       - export NS="integration-test-${{CF_BRANCH_TAG_NORMALIZED}}-${{CF_SHORT_REVISION}}"
-      - kubectl config use-context gke
+      - kubectl config use-context my-first-cluster-1@CodeFreshDemo
       - kubectl create ns $NS
       - cf_export NS
     stage: "integration-test"
@@ -73,7 +73,7 @@ steps:
     type: helm
     arguments:
       action: "install"
-      kube_context: "gke"
+      kube_context: "my-first-cluster-1@CodeFreshDemo"
       namespace: "${{NS}}"
       chart_name: "wordsmith"
       release_name: "${{NS}}"
@@ -88,7 +88,7 @@ steps:
     image: "codefresh/kubectl"
     working_directory: "${{clone}}/test"
     commands:
-      - kubectl config use-context gke
+      - kubectl config use-context my-first-cluster-1@CodeFreshDemo
       - ./integration.sh
     stage: "integration-test"
     on_success:
@@ -115,7 +115,7 @@ steps:
     type: "helm"
     arguments:
       action: "auth"
-      kube_context: "gke"
+      kube_context: "my-first-cluster-1@CodeFreshDemo"
       namespace: "${{NS}}"
       helm_version: 3.2.0
       commands:
@@ -127,6 +127,6 @@ steps:
       type: "freestyle"
       image: "codefresh/kubectl"
       commands:
-        - "kubectl config use-context gke"
+        - "kubectl config use-context my-first-cluster-1@CodeFreshDemo"
         - "kubectl delete ns $NS"
       stage: "cleanup"
