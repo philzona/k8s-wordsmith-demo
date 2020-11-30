@@ -7,7 +7,7 @@ steps:
   clone:
     title: Cloning repository
     type: git-clone
-    repo: pbzona/k8s-wordsmith-demo
+    repo: philzona/k8s-wordsmith-demo
     revision: ${{CF_BRANCH}}
     git: github
     stage: clone
@@ -15,7 +15,7 @@ steps:
   build:
     title: Building Docker image
     type: build
-    image_name: pbzona/wordsmith-db
+    image_name: codefreshphil/wordsmith-db
     working_directory: ${{clone}}/db
     tag: "${{CF_BRANCH_TAG_NORMALIZED}}-${{CF_SHORT_REVISION}}"
     dockerfile: Dockerfile

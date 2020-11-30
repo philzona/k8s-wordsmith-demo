@@ -8,7 +8,7 @@ steps:
   clone:
     title: Cloning repository
     type: git-clone
-    repo: pbzona/k8s-wordsmith-demo
+    repo: philzona/k8s-wordsmith-demo
     revision: ${{CF_BRANCH}}
     git: github-cf
     stage: clone
