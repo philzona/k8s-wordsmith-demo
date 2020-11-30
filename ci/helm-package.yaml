@@ -18,4 +18,5 @@ steps:
     arguments:
       action: push
       chart_name: /codefresh/volume/k8s-wordsmith-demo/charts/wordsmith
+      chart_repo_url: 'cm://h.cfcr.io/philzona/default'
     stage: deploy
