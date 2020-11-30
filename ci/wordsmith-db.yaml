@@ -9,7 +9,7 @@ steps:
     type: git-clone
     repo: philzona/k8s-wordsmith-demo
     revision: ${{CF_BRANCH}}
-    git: github
+    git: github-cf
     stage: clone
 
   build:
