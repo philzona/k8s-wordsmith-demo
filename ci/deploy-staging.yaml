@@ -1,0 +1,47 @@
+version: "1.0"
+stages:
+  - "clone"
+  - "build"
+  - "deploy"
+
+steps:
+  clone:
+    title: "Cloning repository"
+    type: "git-clone"
+    repo: "philzona/k8s-wordsmith-demo"
+    revision: "${{CF_BRANCH}}"
+    git: "github-cf"
+    stage: "clone"
+
+  build:
+    title: "Building Docker image"
+    type: "build"
+    image_name: "codefreshphil/wordsmith-web"
+    working_directory: "${{clone}}/web"
+    tag: "${{CF_BRANCH_TAG_NORMALIZED}}-${{CF_SHORT_REVISION}}"
+    dockerfile: "Dockerfile"
+    stage: "build"
+    on_success:
+      metadata:
+        set:
+          - ${{build.imageId}}:
+            - build_passed: "true"
+    on_fail:
+      metadata:
+        set:
+          - ${{build.imageId}}:
+            - build_passed: "false"
+  
+  deploy:
+    title: "Deploying to staging"
+    type: helm
+    arguments:
+      action: "install"
+      kube_context: "codefreshphil"
+      namespace: "wordsmith-staging"
+      chart_name: "wordsmith"
+      release_name: "${{CF_BRANCH_TAG_NORMALIZED}}-${{CF_SHORT_REVISION}}"
+      helm_version: 3.2.0
+      custom_values:
+        - 'web.image="pbzona/wordsmith-web:${{CF_BRANCH_TAG_NORMALIZED}}-${{CF_SHORT_REVISION}}"'
+    stage: "deploy"
