@@ -15,7 +15,7 @@ steps:
   build:
     title: Building Docker image
     type: build
-    image_name: codefresh-phil/wordsmith-words
+    image_name: codefreshphil/wordsmith-words
     working_directory: ${{clone}}/words
     tag: "${{CF_BRANCH_TAG_NORMALIZED}}-${{CF_SHORT_REVISION}}"
     dockerfile: Dockerfile
