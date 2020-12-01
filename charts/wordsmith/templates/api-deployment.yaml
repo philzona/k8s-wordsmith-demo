@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: {{ .Release.Name }}-words
-        image: {{ .Values.words.image }}:{{ .Values.words.tag }}
+        image: {{ .Values.words.image }}
         ports:
         - containerPort: 8080
           name: {{ .Values.words.name }}
