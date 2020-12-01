@@ -1,18 +1,21 @@
 db:
   name: db
   image: codefreshphil/wordsmith-db
+  tag: latest
   labels:
     app: words-db
 
 web:
   name: web
   image: codefreshphil/wordsmith-web
+  tag: latest
   labels:
     app: words-web
 
 words:
   name: words
   image: codefreshphil/wordsmith-words
+  tag: latest
   labels:
     app: words-api
   replicas: 3

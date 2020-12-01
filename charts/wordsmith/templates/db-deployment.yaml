@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: {{ .Release.Name }}-db
-        image: {{ .Values.db.image }}
+        image: {{ .Values.db.image }}:{{ .Values.db.tag }}
         ports:
         - containerPort: 5432
           name: {{ .Values.db.name }}
