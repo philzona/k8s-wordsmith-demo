@@ -1,18 +1,18 @@
 db:
   name: db
-  image: philzona/wordsmith-db
+  image: codefreshphil/wordsmith-db
   labels:
     app: words-db
 
 web:
   name: web
-  image: philzona/wordsmith-web
+  image: codefreshphil/wordsmith-web
   labels:
     app: words-web
 
 words:
   name: words
-  image: philzona/wordsmith-words
+  image: codefreshphil/wordsmith-words
   labels:
     app: words-api
   replicas: 3
