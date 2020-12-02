@@ -43,5 +43,5 @@ steps:
       release_name: "${{CF_BRANCH_TAG_NORMALIZED}}-${{CF_SHORT_REVISION}}"
       helm_version: 3.2.0
       custom_values:
-        - 'web.image="pbzona/wordsmith-web:${{CF_BRANCH_TAG_NORMALIZED}}-${{CF_SHORT_REVISION}}"'
+        - 'web.image="codefreshphil/wordsmith-web:${{CF_BRANCH_TAG_NORMALIZED}}-${{CF_SHORT_REVISION}}"'
     stage: "deploy"
